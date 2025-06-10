@@ -89,3 +89,14 @@ body,
   color: #fff;
   border: 1.5px solid #fff;
 }
+
+.htmlScreen img {
+  transition: box-shadow 0.2s, border 0.2s;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.htmlScreen img:hover {
+  border: 10px solid #fff;
+  box-shadow: 0 0 12px #fff8, 0 0 0 4px #fff4;
+}
