@@ -7,7 +7,5 @@ While this site serves as a visual introduction, the detailed case studies and p
 I'm continuously learning and improving the site to enhance performance and usability.  
 Thanks for visiting!
 
----
-
 ## Explore my work project  
-📘 Full my work project details: [GitBook Portfolio](https://ray120.gitbook.io/works)
+📘 Full my work project details: [GitBook Portfolio](https://ray120.gitbook.io/works/en)
