@@ -1,8 +1,8 @@
 import './style.css'
 import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
-import Experience from './Experience.jsx'
-import SwitchButton from './SwitchButton.jsx'
+import Experience from './Scene3D.jsx'
+import SwitchButton from './Ui.jsx'
 import { useRef, useState, useEffect } from 'react'
 
 function Typewriter({ text = '', speed = 60 }) {
@@ -44,7 +44,7 @@ function App() {
 
   const handleStart = () => {
     // play click sound
-    const clickAudio = new Audio('/click.mp3')
+    const clickAudio = new Audio('/sound-click.mp3')
     clickAudio.play()
     setStarted(true)
     if (audioRef.current) {
@@ -67,7 +67,7 @@ function App() {
         }}>
           
           <Typewriter text= {myText} speed={70} />
-          <audio ref={audioRef} src="/music-landing-page-background.mp3" loop volume={0.05} />
+          <audio ref={audioRef} src="/music-landing-page-background.mp3" loop volume={0.02} />
           <button
             className="start-btn"
             onClick={handleStart}
@@ -79,7 +79,9 @@ function App() {
       {started && (
         <>
           <SwitchButton />
+          
           <Canvas
+          shadows
           style={{ background: '#000' }}
             
           >
@@ -93,3 +95,4 @@ function App() {
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 root.render(<App />)
+

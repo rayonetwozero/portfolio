@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ray｜Show 120% as always.</title>
     <link rel="icon" href="/logo.ico" />
+
+    <!--SEO-->
+    <meta property="og:title" content="Ray｜Show 120% as always." />
+    <meta property="og:description" content="I'm Ray, an UIUX & Product Designer. This is my protfolio in 2025." />
+    <meta property="og:image" content="https://ray-120.com/og-image.jpg" />
+    <meta property="og:url" content="https://ray-120.com/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKS61CRJ1E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-GKS61CRJ1E');
+    </script>
 </head>
 <body>
     <img 
@@ -14,11 +30,15 @@
     style="position:absolute;
             top:16px;
             left:16px;
-            width:60px;
+            width:48px;
             height:auto;
             z-index:10;"
-    onclick="location.reload()" 
     />
+    <!--Hide H1-->
+    <h1 style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+      Ray｜Show 120% as always.
+    </h1>
+
     <div id="root"></div>
     <div class="copyright">
     Fueled with 
@@ -35,5 +55,5 @@
     title="Ray's Linkedin">Ray</a>
     · 2025
     </div>
-    <script type="module" src="./index.jsx"></script></body>
+    <script type="module" src="./Index.jsx"></script></body>
 </html>
