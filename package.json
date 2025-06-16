@@ -17,6 +17,7 @@
     "@react-three/fiber": "^9.1.0",
     "@react-three/postprocessing": "^3.0.4",
     "@react-three/uikit": "^0.8.19",
+    "lottie-react": "^2.4.1",
     "postprocessing": "6.37",
     "r3f-perf": "^7.2.3",
     "react": "19.0",

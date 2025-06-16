@@ -13,6 +13,7 @@ export default function Experience()
     const lamp = useGLTF('/model-lamp.glb')
     const red_chair = useGLTF('/model-red-chair.glb')
     const motocycle = useGLTF('/model-motocycle-animated.glb')
+    const linkedin = useGLTF('/model-linkedin.glb')
     
     const { actions, names, mixer } = useAnimations(
         motocycle?.animations || [],
@@ -76,16 +77,7 @@ export default function Experience()
         return arr
     }, [red_chair.scene])
 
-    // get motocycle's mesh
-    const motocycleMeshes = useMemo(() => {
-        const arr = []
-        if (motocycle.scene) {
-            motocycle.scene.traverse(obj => {
-                if (obj.isMesh) arr.push(obj)
-            })
-        }
-        return arr
-    }, [motocycle.scene])
+    
    
 
     useEffect(() => {
@@ -147,12 +139,12 @@ export default function Experience()
 
         <SpotLight
             ref={spotLightRef}
-            position={[-1.5, 0.85, 0.4]}
+            position={[-0.18, 0.85, 1.8]}
             penumbra={1}
             intensity={1}
             color={0xFFD306}
             distance={10}
-            angle={Math.PI / 3}
+            angle={Math.PI / 4}
             attenuation={5}
             anglePower={10}
             castShadow
@@ -163,10 +155,10 @@ export default function Experience()
         {/* 聚光燈目標位置物件 */}
         <primitive object={new THREE.Object3D()} 
                    ref={targetRef}
-                   position={[0,0,1.3]} />
+                   position={[1,0,2.3]} />
 
         <Plane  
-                args={[10, 10]}
+                args={[15, 15]}
                 position={[0,-0.02,0]}
                 rotation={[-1.5701,0,0]}
                 material-color="#000000"
@@ -175,7 +167,7 @@ export default function Experience()
 
         <PerspectiveCamera 
             makeDefault
-            position={[-1, 2.2, 4]}
+            position={[-1.8, 2.2, 4.8]}
             near={1}
             far={15}
             target={[0, 1, 0]} />
@@ -188,12 +180,13 @@ export default function Experience()
             maxAzimuthAngle={Math.PI / 6}
             minPolarAngle={Math.PI /3}
             maxPolarAngle={Math.PI / 2}
-            minDistance={2.2}   // 最靠近目標的距離
+            minDistance={2.2}   
             maxDistance={6}
             enablePan = {false}  />
 
         
-        <primitive object={ desk.scene }  >
+        <primitive object={ desk.scene }
+                   position={[0, 0, 0]}>
             
             <Html
                 transform
@@ -222,7 +215,7 @@ export default function Experience()
                 boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
                 border: '0px solid #c00',
                 whiteSpace: 'nowrap',
-                pointerEvents: 'none', // 不擋住 3D 互動
+                pointerEvents: 'none', 
                 userSelect: 'none'
             }}
                     >
@@ -234,11 +227,25 @@ export default function Experience()
         </primitive>
 
         <primitive object={lamp.scene} />
+        
+        <Float 
+            floatIntensity={0.5} 
+                rotationIntensity={0.2}
+                speed={1}>
+        <primitive object={linkedin.scene}
+                    scale={[0.8, 0.8, 0.8]} 
+                    position={[0, 0.18, 0]}
+                    onClick={() => {
+                        window.open('https://www.linkedin.com/in/ray120/', '_blank')
+                    }}
+                    cursor="pointer"/>
+        </Float>
 
 
         {redChairMeshes.map((mesh) => (
         <primitive
             object={mesh}
+            position={[1.2, 0, -0.2]}
             key={mesh.uuid}
             onPointerOver={() => setChairHovered(true)}
             onPointerOut={() => setChairHovered(false)}
@@ -247,9 +254,9 @@ export default function Experience()
         <>
             <Outlines thickness={3} color="white" />
             <Html
-            position={[1, 0.6, 0]} // 根據椅子調整高度
+            position={[1, 0.6, 0]} 
             center
-            distanceFactor={5} // 根據場景調整大小
+            distanceFactor={5}
             style={{
                 background: '#fff',
                 color: '#c00',
@@ -260,7 +267,7 @@ export default function Experience()
                 boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
                 border: '0px solid #c00',
                 whiteSpace: 'nowrap',
-                pointerEvents: 'none', // 不擋住 3D 互動
+                pointerEvents: 'none', 
                 userSelect: 'none'
             }}
             >
@@ -272,10 +279,10 @@ export default function Experience()
     </primitive>
     ))}
 
-
         {motocycle.scene && (
             <primitive
                 object={motocycle.scene}
+                position={[1.2, 0, 1.6]}
                 onClick={e => {handleMotocycleClick(e)
                                handleStart(e)}}
                 style={{ cursor: 'pointer' }}
@@ -284,14 +291,14 @@ export default function Experience()
         
 
         <Float 
-            floatIntensity={3} 
-                rotationIntensity={1.2}
-                speed={3}>
+            floatIntensity={1} 
+                rotationIntensity={0.5}
+                speed={2}>
             <Text
                 font="./font.woff"
                 fontSize={ 1 }
-                position={ [ 1.3, 2, 0.3 ] }
-                rotation-y={ -1 }
+                position={ [ 0, 2.4, -1 ] }
+                rotation-y={ -0.4 }
                 maxWidth={ 10}
                 textAlign= "left"
                     
@@ -302,13 +309,14 @@ export default function Experience()
             <Text
                 font="./font.woff"
                 fontSize={ 0.2 }
-                position={ [ 1.4, 1.5, 0.7 ] }
-                rotation-y={ -1 }
-                maxWidth={ 10}
+                position={ [ 0, 1.6, -0.8 ] }
+                rotation-y={ -0.4 }
+                maxWidth={ 2}
                 textAlign="left" 
                 color={ '#42f572' }
                 >
                 UIUX & Product Designer
+                Click screen to see works
             </Text>
         </Float>
 

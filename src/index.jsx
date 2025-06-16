@@ -1,6 +1,8 @@
 import './style.css'
 import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
+import Lottie  from 'lottie-react'
+import loadingAnimation from './lottie-loading.json'
 import Experience from './Scene3D.jsx'
 import SwitchButton from './Ui.jsx'
 import { useRef, useState, useEffect } from 'react'
@@ -39,17 +41,22 @@ function Typewriter({ text = '', speed = 60 }) {
 
 function App() {
   const [started, setStarted] = useState(false)
+  const [loading, setLoading] = useState(true)
   const audioRef = useRef(null)
   const myText = "Welcome to Ray's Portfolio 2025..."
 
   const handleStart = () => {
-    // play click sound
     const clickAudio = new Audio('/sound-click.mp3')
     clickAudio.play()
     setStarted(true)
     if (audioRef.current) {
       audioRef.current.play()
     }
+  }
+
+  // 監聽 Canvas 載入完成
+  const handleCanvasCreated = () => {
+    setLoading(false)
   }
 
   return (
@@ -65,8 +72,7 @@ function App() {
           zIndex: 9999,
           flexDirection: 'column'
         }}>
-          
-          <Typewriter text= {myText} speed={70} />
+          <Typewriter text={myText} speed={70} />
           <audio ref={audioRef} src="/music-landing-page-background.mp3" loop volume={0.02} />
           <button
             className="start-btn"
@@ -78,12 +84,16 @@ function App() {
       )}
       {started && (
         <>
+          {loading && (
+            <div className="lottie-loading-overlay">
+              <Lottie animationData={loadingAnimation} loop={true} style={{ width: 200, height: 200 }} />
+            </div>
+          )}
           <SwitchButton />
-          
           <Canvas
-          shadows
-          style={{ background: '#000' }}
-            
+            shadows
+            style={{ background: '#000' }}
+            onCreated={handleCanvasCreated}
           >
             <Experience />
           </Canvas>

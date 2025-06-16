@@ -27,16 +27,21 @@ export default function SwitchButton() {
   return (
     <div style={{
       position: 'fixed',
-      top: 24,
-      right: 24,
+      top: 16,
+      right: 16,
       zIndex: 1000
     }}>
       <audio ref={audioRef} src="/music-landing-page-background.mp3" loop autoPlay />
       <button
         className={`music-switch-btn${on ? '' : ' off'}`}
         onClick={handleClick}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
-        {on ? 'Music ON' : 'Music OFF'}
+        <img
+          src={on ? '/icon-music-on.svg' : '/icon-music-off.svg'}
+          alt={on ? 'Music On' : 'Music Off'}
+          style={{ width: 24, height: 24 }}
+        />
       </button>
     </div>
   )
